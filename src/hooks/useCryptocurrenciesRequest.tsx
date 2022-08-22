@@ -3,7 +3,12 @@ import { API_URL, fetchAllCyrrencies } from '../api';
 import { AppContext } from '../store';
 
 const useCryptocurrenciesRequest = (offset: number) => {
-  const { dispatch } = useContext(AppContext);
+  const {
+    dispatch,
+    state: {
+      cryptoCurrencies: { loading, data },
+    },
+  } = useContext(AppContext);
 
   const requestCurrencies = () => {
     fetch(`${API_URL}?offset=${offset}&limit=10`)
@@ -21,6 +26,8 @@ const useCryptocurrenciesRequest = (offset: number) => {
   useEffect(() => {
     requestCurrenciesCallback();
   }, [offset, requestCurrenciesCallback]);
+
+  return { loading, data };
 };
 
 export default useCryptocurrenciesRequest;
