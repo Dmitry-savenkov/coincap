@@ -11,6 +11,7 @@ const useCryptocurrenciesRequest = (offset: number) => {
   } = useContext(AppContext);
 
   const requestCurrencies = () => {
+    dispatch({ type: 'SET_CRYPTOCURRENCIES_LOADING' });
     fetch(`${API_URL}?offset=${offset}&limit=10`)
       .then((res) => {
         return res.json();
@@ -18,6 +19,9 @@ const useCryptocurrenciesRequest = (offset: number) => {
       .then((dataJSON) => dispatch({ type: 'SET_CRYPTOCURRENCIES_DATA', payload: dataJSON }))
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        dispatch({ type: 'SET_CRYPTOCURRENCIES_LOADED' });
       });
   };
 

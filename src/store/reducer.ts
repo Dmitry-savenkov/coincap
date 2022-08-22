@@ -27,6 +27,15 @@ export const reducer = (state: any, action: { type: string }) => {
         },
       };
     }
+    case 'SET_CURRENT_CRYPTOCURRENCY_DATA': {
+      return {
+        ...state,
+        currentCryptocurrency: {
+          ...state.currentCryptocurrency,
+          data: action.payload.data,
+        },
+      };
+    }
     default:
       return state;
   }

@@ -1,10 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import useCurrentCryptocurrency from '../hooks/useCurrentCryptocurrency';
 
-const Сryptocurrency = () => {
+const Сryptocurrency = ({
+  navigation,
+  route: {
+    params: { id, name },
+  },
+}) => {
+  const data = useCurrentCryptocurrency(id);
+
   return (
     <View>
-      <Text>Сryptocurrency</Text>
+      <Text>{id}</Text>
     </View>
   );
 };

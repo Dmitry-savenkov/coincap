@@ -1,16 +1,14 @@
 // Lib
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
 
 //Components
 import Loader from '../components/Loader';
-
+import CryptocurrenciesList from '../components/CryptocurrenciesList';
 // Hooks
 import useCryptocurrenciesRequest from '../hooks/useCryptocurrenciesRequest';
 
-import { AppContext } from '../store';
-
-const Cryptocurrencies = () => {
+const Cryptocurrencies = ({ navigation }) => {
   const [offset, setOffset] = useState(0);
 
   const { loading, data } = useCryptocurrenciesRequest(offset);
@@ -23,27 +21,16 @@ const Cryptocurrencies = () => {
 
   return (
     <SafeAreaView>
-      {loading ? (
-        <Loader />
-      ) : (
+      {data.length ? (
         <FlatList
           data={data}
-          keyExtractor={(item, index) => index}
+          keyExtractor={(item, index) => item.id + index.toString()}
           onEndReached={loadMore}
           onEndReachedThreshold={0.1}
-          renderItem={({ item, index }) => (
-            <View
-              style={{
-                height: 75,
-                backgroundColor: '#C7C7C7',
-                marginTop: 20,
-                borderRadius: 10,
-              }}
-            >
-              <Text>{item.id}</Text>
-            </View>
-          )}
+          renderItem={({ item }) => <CryptocurrenciesList item={item} navigation={navigation} />}
         />
+      ) : (
+        <Loader />
       )}
     </SafeAreaView>
   );
