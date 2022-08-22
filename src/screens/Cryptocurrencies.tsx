@@ -2,21 +2,23 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 
-import { AppContext } from '../store';
-
 //Components
 import Loader from '../components/Loader';
 
+// Hooks
 import useCryptocurrenciesRequest from '../hooks/useCryptocurrenciesRequest';
+
+import { AppContext } from '../store';
 
 const Cryptocurrencies = () => {
   const [offset, setOffset] = useState(0);
-  console.log('here');
 
   const { loading, data } = useCryptocurrenciesRequest(offset);
 
   const loadMore = () => {
-    setOffset((offset) => offset + 10);
+    if (!loading) {
+      setOffset((offset) => offset + 10);
+    }
   };
 
   return (
@@ -30,7 +32,14 @@ const Cryptocurrencies = () => {
           onEndReached={loadMore}
           onEndReachedThreshold={0.1}
           renderItem={({ item, index }) => (
-            <View>
+            <View
+              style={{
+                height: 75,
+                backgroundColor: '#C7C7C7',
+                marginTop: 20,
+                borderRadius: 10,
+              }}
+            >
               <Text>{item.id}</Text>
             </View>
           )}
