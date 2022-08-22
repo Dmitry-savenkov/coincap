@@ -27,12 +27,12 @@ const Сryptocurrency = ({
   const data = useCurrentCryptocurrency(id);
 
   return (
-    <SafeAreaView style={{ flex: 1, paddingHorizontal: 20 }}>
+    <SafeAreaView style={[styles.container]}>
       <ScrollView>
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ fontSize: 20, fontWeight: '600' }}>{name}</Text>
+        <View style={[styles.titleWrapper]}>
+          <Text style={[styles.title]}>{name}</Text>
         </View>
-        <View style={{ paddingHorizontal: 10 }}>
+        <View style={[styles.cryptocurrencyDetailWrapper]}>
           <CryptocurrencyDetail title="change percent 24 hr" value={changePercent24Hr} />
           <CryptocurrencyDetail title="price usd" value={priceUsd} />
           <CryptocurrencyDetail title="market capitalization usd" value={marketCapUsd} />
@@ -45,23 +45,45 @@ const Сryptocurrency = ({
           onPress={() => {
             navigation.navigate('AddCryptocurrency', { name, priceUsd });
           }}
-          style={{
-            height: 45,
-            backgroundColor: '#3AA43E',
-            marginTop: 20,
-            borderRadius: 10,
-            marginHorizontal: 10,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          style={[styles.button]}
         >
-          <Text style={{ color: 'white', fontSize: 16, fontWeight: '600' }}>Buy</Text>
+          <Text style={[styles.buttonText]}>Buy</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+  },
+  titleWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '600',
+  },
+  cryptocurrencyDetailWrapper: {
+    paddingHorizontal: 10,
+  },
+  button: {
+    height: 45,
+    backgroundColor: '#3AA43E',
+    marginTop: 20,
+    borderRadius: 10,
+    marginHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+});
 
 export default Сryptocurrency;

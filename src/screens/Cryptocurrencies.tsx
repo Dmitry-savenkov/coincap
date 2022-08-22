@@ -1,10 +1,11 @@
 // Lib
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 
 //Components
 import Loader from '../components/Loader';
 import CryptocurrenciesList from '../components/CryptocurrenciesList';
+
 // Hooks
 import useCryptocurrenciesRequest from '../hooks/useCryptocurrenciesRequest';
 
@@ -35,7 +36,5 @@ const Cryptocurrencies = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default Cryptocurrencies;

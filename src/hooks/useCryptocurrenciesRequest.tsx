@@ -1,5 +1,5 @@
 import { useEffect, useContext, useCallback } from 'react';
-import { API_URL, fetchAllCyrrencies } from '../api';
+import { API_URL } from '../api';
 import { AppContext } from '../store';
 
 const useCryptocurrenciesRequest = (offset: number) => {
