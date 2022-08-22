@@ -1,11 +1,23 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// Lib
+import React, { useContext } from 'react';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+
+import { AppContext } from '../store';
+
+//Components
+import Loader from '../components/Loader';
 
 const Cryptocurrencies = () => {
+  const {
+    state: {
+      cryptoCurrencies: { loading },
+    },
+  } = useContext(AppContext);
+
   return (
-    <View>
+    <SafeAreaView>
       <Text>Cryptocurrencies</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
