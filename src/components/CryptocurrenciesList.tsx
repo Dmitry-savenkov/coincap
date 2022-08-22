@@ -9,7 +9,19 @@ const CryptocurrenciesList = ({ navigation, item }) => {
   return useMemo(
     () => (
       <TouchableOpacity
-        onPress={() => navigation.navigate('Cryptocurrency', { id: item.id })}
+        onPress={() =>
+          navigation.navigate('Cryptocurrency', {
+            id: item.id,
+            name: item.name,
+            changePercent24Hr: item.changePercent24Hr,
+            priceUsd: item.priceUsd,
+            marketCapUsd: item.marketCapUsd,
+            maxSupply: item.maxSupply,
+            supply: item.supply,
+            volumeUsd24Hr: item.volumeUsd24Hr,
+            vwap24Hr: item.vwap24Hr,
+          })
+        }
         style={[styles.container]}
       >
         <View style={[styles.contentWrapper]}>
@@ -37,7 +49,18 @@ const CryptocurrenciesList = ({ navigation, item }) => {
         </View>
       </TouchableOpacity>
     ),
-    [item.changePercent24Hr, item.id, item.name, item.priceUsd, navigation],
+    [
+      item.changePercent24Hr,
+      item.id,
+      item.marketCapUsd,
+      item.maxSupply,
+      item.name,
+      item.priceUsd,
+      item.supply,
+      item.volumeUsd24Hr,
+      item.vwap24Hr,
+      navigation,
+    ],
   );
 };
 
