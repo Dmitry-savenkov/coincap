@@ -6,7 +6,6 @@ const Loader = () => <ActivityIndicator size="large" style={[styles.loader]} />;
 
 const styles = StyleSheet.create({
   loader: {
-    flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
     width: '100%',

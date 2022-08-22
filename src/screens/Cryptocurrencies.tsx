@@ -14,11 +14,7 @@ const Cryptocurrencies = () => {
     },
   } = useContext(AppContext);
 
-  return (
-    <SafeAreaView>
-      <Text>Cryptocurrencies</Text>
-    </SafeAreaView>
-  );
+  return <SafeAreaView>{!loading ? <Loader /> : null}</SafeAreaView>;
 };
 
 const styles = StyleSheet.create({});
