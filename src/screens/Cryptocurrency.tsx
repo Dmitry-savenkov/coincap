@@ -1,6 +1,6 @@
 // Lib
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 
 // Hooks
 import useCurrentCryptocurrency from '../hooks/useCurrentCryptocurrency';
@@ -41,6 +41,22 @@ const Сryptocurrency = ({
           <CryptocurrencyDetail title="volume usd 24 hr" value={volumeUsd24Hr} />
           <CryptocurrencyDetail title="v wap 24 hr" value={vwap24Hr} />
         </View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('AddCryptocurrency', { name, priceUsd });
+          }}
+          style={{
+            height: 45,
+            backgroundColor: '#3AA43E',
+            marginTop: 20,
+            borderRadius: 10,
+            marginHorizontal: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Text style={{ color: 'white', fontSize: 16, fontWeight: '600' }}>Buy</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
