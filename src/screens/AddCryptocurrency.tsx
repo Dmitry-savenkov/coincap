@@ -1,10 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const AddCryptocurrency = () => {
+const AddCryptocurrency = ({
+  route: {
+    params: { name, priceUsd },
+  },
+}) => {
   return (
     <View>
-      <Text>AddCryptocurrency</Text>
+      <Text>
+        {name} {priceUsd}
+      </Text>
     </View>
   );
 };
