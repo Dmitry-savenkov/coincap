@@ -10,7 +10,7 @@ const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
 
   return (
-    <Tab.Navigator initialRouteName="Currencies">
+    <Tab.Navigator initialRouteName="Cryptocurrencies">
       <Tab.Screen name="Cryptocurrencies" component={CryptocurrenciesStack} />
       <Tab.Screen name="Portfolio" component={Portfolio} />
     </Tab.Navigator>

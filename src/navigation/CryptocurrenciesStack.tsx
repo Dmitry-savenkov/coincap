@@ -11,8 +11,11 @@ const CryptocurrenciesStack = () => {
   const Stack = createNativeStackNavigator();
 
   return (
-    <Stack.Navigator initialRouteName="Cryptocurrencies" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Cryptocurrencies" component={Cryptocurrencies} />
+    <Stack.Navigator
+      initialRouteName="CryptocurrenciesScreen"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="CryptocurrenciesScreen" component={Cryptocurrencies} />
       <Stack.Screen name="Cryptocurrency" component={Cryptocurrency} />
       <Stack.Screen name="AddCryptocurrency" component={AddCryptocurrency} />
     </Stack.Navigator>
