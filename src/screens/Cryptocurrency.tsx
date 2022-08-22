@@ -1,10 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const Сryptocurrency = () => {
+const Сryptocurrency = ({
+  navigation,
+  route: {
+    params: { id, name },
+  },
+}) => {
   return (
     <View>
-      <Text>Сryptocurrency</Text>
+      <Text>{id}</Text>
     </View>
   );
 };
