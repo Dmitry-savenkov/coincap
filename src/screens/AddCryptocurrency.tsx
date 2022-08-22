@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,13 +8,17 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import { AppContext } from '../store';
 
 const AddCryptocurrency = ({
   route: {
     params: { name, priceUsd },
   },
 }) => {
-  const [value, setValue] = useState(0);
+  const { state, dispatch } = useContext(AppContext);
+  const [value, setValue] = useState('');
+  console.log(state.portfolio.cryptocurrencies);
+
   return (
     <SafeAreaView style={[styles.container]}>
       <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
@@ -36,7 +40,12 @@ const AddCryptocurrency = ({
           keyboardType="decimal-pad"
         />
         <TouchableOpacity
-          onPress={() => {}}
+          onPress={() => {
+            dispatch({
+              type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO',
+              payload: { price: (Number(value) * priceUsd).toFixed(2), cryptocurrency: name },
+            });
+          }}
           style={{
             width: 50,
             height: 30,
@@ -49,6 +58,9 @@ const AddCryptocurrency = ({
         >
           <Text style={{ color: 'white', fontSize: 14, fontWeight: '600' }}>Buy</Text>
         </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: 10 }}>
+        <Text>total price: ${(Number(value) * priceUsd).toFixed(2)}</Text>
       </View>
     </SafeAreaView>
   );

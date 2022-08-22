@@ -11,6 +11,9 @@ const initialState = {
     data: [],
     loading: false,
   },
+  portfolio: {
+    cryptocurrencies: [],
+  },
 };
 
 export const AppContext = createContext({
