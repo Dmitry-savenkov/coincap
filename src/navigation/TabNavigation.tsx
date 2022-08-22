@@ -6,13 +6,36 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Portfolio from '../screens/Portfolio';
 import CryptocurrenciesStack from './CryptocurrenciesStack';
 
+// Components
+import AntDesignIcon from '../components/icons/AntDesignIcon';
+
 const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
 
   return (
-    <Tab.Navigator initialRouteName="Cryptocurrencies">
-      <Tab.Screen name="Cryptocurrencies" component={CryptocurrenciesStack} />
-      <Tab.Screen name="Portfolio" component={Portfolio} />
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: { backgroundColor: '#FFFFFF' },
+        tabBarInactiveTintColor: '#AAAAAA',
+        tabBarActiveTintColor: '#000000',
+      }}
+      initialRouteName="Cryptocurrencies"
+    >
+      <Tab.Screen
+        name="Cryptocurrencies"
+        component={CryptocurrenciesStack}
+        options={{
+          tabBarIcon: ({ color }) => <AntDesignIcon name="barschart" size={20} color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Portfolio"
+        component={Portfolio}
+        options={{
+          tabBarIcon: ({ color }) => <AntDesignIcon name="wallet" size={20} color={color} />,
+        }}
+      />
     </Tab.Navigator>
   );
 };
