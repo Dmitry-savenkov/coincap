@@ -7,6 +7,10 @@ const initialState = {
     data: [],
     loading: false,
   },
+  currentCryptocurrency: {
+    data: [],
+    loading: false,
+  },
 };
 
 export const AppContext = createContext({
