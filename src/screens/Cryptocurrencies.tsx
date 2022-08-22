@@ -7,11 +7,11 @@ import { AppContext } from '../store';
 //Components
 import Loader from '../components/Loader';
 
-import { fetchAllCyrrencies } from '../api';
+import useCryptocurrenciesRequest from '../hooks/useCryptocurrenciesRequest';
 
 const Cryptocurrencies = () => {
   const [offset, setOffset] = useState(0);
-  const response = fetchAllCyrrencies(offset);
+  useCryptocurrenciesRequest(offset);
 
   const {
     state: {
@@ -19,9 +19,9 @@ const Cryptocurrencies = () => {
     },
   } = useContext(AppContext);
 
-  const loadMore = useCallback(() => {
+  const loadMore = () => {
     setOffset((offset) => offset + 10);
-  }, []);
+  };
 
   return (
     <SafeAreaView>
@@ -35,7 +35,7 @@ const Cryptocurrencies = () => {
           onEndReachedThreshold={0.3}
           renderItem={({ item, index }) => (
             <View>
-              <Text>Currency</Text>
+              <Text>{item.id}</Text>
             </View>
           )}
         />
