@@ -1,40 +1,43 @@
 // Lib
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 // Components
 import AntDesignIcon from './icons/AntDesignIcon';
 
 const CryptocurrenciesList = ({ navigation, item }) => {
-  return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate('Cryptocurrency', { id: item.id })}
-      style={[styles.container]}
-    >
-      <View style={[styles.contentWrapper]}>
-        <View style={{ paddingVertical: 20 }}>
-          <Text style={[styles.cryptoName]}>{item.name}</Text>
-          <Text style={[styles.cryptoId]}>{item.id}</Text>
-        </View>
-        <View style={[styles.cryptoPriceWrapper]}>
-          <View style={[styles.priceUsdWrapper]}>
-            <Text>{Number(item.priceUsd).toFixed(2)}$</Text>
-            <View style={[styles.changePercent24HrWrapper]}>
-              <Text style={{ color: item.changePercent24Hr > 0 ? '#3AA43E' : 'red' }}>
-                {item.changePercent24Hr > 0 ? '+' : null}
-                {Number(item.changePercent24Hr).toFixed(2)}%
-              </Text>
-            </View>
+  return useMemo(
+    () => (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Cryptocurrency', { id: item.id })}
+        style={[styles.container]}
+      >
+        <View style={[styles.contentWrapper]}>
+          <View style={{ paddingVertical: 20 }}>
+            <Text style={[styles.cryptoName]}>{item.name}</Text>
+            <Text style={[styles.cryptoId]}>{item.id}</Text>
           </View>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('AddCryptocurrency')}
-            style={[styles.navigateButton]}
-          >
-            <AntDesignIcon name="plus" size={16} color="white" />
-          </TouchableOpacity>
+          <View style={[styles.cryptoPriceWrapper]}>
+            <View style={[styles.priceUsdWrapper]}>
+              <Text>{Number(item.priceUsd).toFixed(2)}$</Text>
+              <View style={[styles.changePercent24HrWrapper]}>
+                <Text style={{ color: item.changePercent24Hr > 0 ? '#3AA43E' : 'red' }}>
+                  {item.changePercent24Hr > 0 ? '+' : null}
+                  {Number(item.changePercent24Hr).toFixed(2)}%
+                </Text>
+              </View>
+            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('AddCryptocurrency')}
+              style={[styles.navigateButton]}
+            >
+              <AntDesignIcon name="plus" size={16} color="white" />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    ),
+    [item.changePercent24Hr, item.id, item.name, item.priceUsd, navigation],
   );
 };
 
