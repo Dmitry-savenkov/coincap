@@ -1,5 +1,5 @@
 // Lib
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 
 // Hooks
@@ -7,6 +7,7 @@ import useCurrentCryptocurrency from '../hooks/useCurrentCryptocurrency';
 
 // Components
 import CryptocurrencyDetail from '../components/CryptocurrencyDetail';
+import TouchableButton from '../components/TouchableButton';
 
 const Сryptocurrency = ({
   navigation,
@@ -26,13 +27,17 @@ const Сryptocurrency = ({
 }) => {
   const data = useCurrentCryptocurrency(id);
 
+  const AddCryptocurrencyButtonPress = useCallback(() => {
+    navigation.navigate('AddCryptocurrency', { name, priceUsd });
+  }, [name, navigation, priceUsd]);
+
   return (
-    <SafeAreaView style={{ flex: 1, paddingHorizontal: 20 }}>
+    <SafeAreaView style={[styles.container]}>
       <ScrollView>
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ fontSize: 20, fontWeight: '600' }}>{name}</Text>
+        <View style={[styles.titleWrapper]}>
+          <Text style={[styles.title]}>{name}</Text>
         </View>
-        <View style={{ paddingHorizontal: 10 }}>
+        <View style={[styles.cryptocurrencyDetailWrapper]}>
           <CryptocurrencyDetail title="change percent 24 hr" value={changePercent24Hr} />
           <CryptocurrencyDetail title="price usd" value={priceUsd} />
           <CryptocurrencyDetail title="market capitalization usd" value={marketCapUsd} />
@@ -41,27 +46,47 @@ const Сryptocurrency = ({
           <CryptocurrencyDetail title="volume usd 24 hr" value={volumeUsd24Hr} />
           <CryptocurrencyDetail title="v wap 24 hr" value={vwap24Hr} />
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('AddCryptocurrency', { name, priceUsd });
-          }}
-          style={{
-            height: 45,
-            backgroundColor: '#3AA43E',
-            marginTop: 20,
-            borderRadius: 10,
-            marginHorizontal: 10,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Text style={{ color: 'white', fontSize: 16, fontWeight: '600' }}>Buy</Text>
-        </TouchableOpacity>
+        <TouchableButton
+          text="Buy"
+          onPress={AddCryptocurrencyButtonPress}
+          stylesText={styles.buttonText}
+          stylesWrapper={styles.button}
+        />
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+  },
+  titleWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '600',
+  },
+  cryptocurrencyDetailWrapper: {
+    paddingHorizontal: 10,
+  },
+  button: {
+    height: 45,
+    backgroundColor: '#3AA43E',
+    marginTop: 20,
+    borderRadius: 10,
+    marginHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+});
 
 export default Сryptocurrency;

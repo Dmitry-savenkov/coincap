@@ -36,6 +36,33 @@ export const reducer = (state: any, action: { type: string }) => {
         },
       };
     }
+    case 'SET_CRYPTOCURRENCY_IN_PORTFOLIO': {
+      const index = state.portfolio.cryptocurrencies.findIndex((item) => {
+        return item.cryptocurrency === action.payload.cryptocurrency;
+      });
+
+      return index === -1
+        ? {
+            ...state,
+            portfolio: {
+              ...state.portfolio,
+              cryptocurrencies: [...state.portfolio.cryptocurrencies, { ...action.payload }],
+            },
+          }
+        : {
+            ...state,
+            portfolio: {
+              ...state.portfolio,
+              cryptocurrencies: [
+                ...state.portfolio.cryptocurrencies.map((item, i) => {
+                  return i === index
+                    ? { ...item, price: Number(item.price) + Number(action.payload.price) }
+                    : item;
+                }),
+              ],
+            },
+          };
+    }
     default:
       return state;
   }

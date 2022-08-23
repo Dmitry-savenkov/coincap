@@ -40,7 +40,12 @@ const CryptocurrenciesList = ({ navigation, item }) => {
               </View>
             </View>
             <TouchableOpacity
-              onPress={() => navigation.navigate('AddCryptocurrency')}
+              onPress={() =>
+                navigation.navigate('AddCryptocurrency', {
+                  name: item.name,
+                  priceUsd: item.priceUsd,
+                })
+              }
               style={[styles.navigateButton]}
             >
               <AntDesignIcon name="plus" size={16} color="white" />
