@@ -52,13 +52,16 @@ const Portfolio = () => {
                   style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}
                 >
                   <Text numberOfLines={1} style={{ marginRight: 10 }}>
-                    ${item.price}
+                    ${+item.price}
                   </Text>
                   <TouchableOpacity
                     onPress={() => {
                       dispatch({
                         type: 'DELETE_CRYPTOCURRENCY_FROM_PORTFOLIO',
-                        payload: { cryptocurrency: item.cryptocurrency, price: item.price },
+                        payload: {
+                          cryptocurrency: item.cryptocurrency,
+                          price: item.price,
+                        },
                       });
                     }}
                   >

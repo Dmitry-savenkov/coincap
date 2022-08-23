@@ -23,19 +23,19 @@ const useChangePortfolio = () => {
   const percentageСhange = useCallback((): string => {
     if (lastPriceСhange?.type === 'add') {
       if (cryptocurrencySum() === +lastPriceСhange.price) {
-        return '+100%';
+        return '( +100%)';
       }
       const dif =
         ((cryptocurrencySum() - (cryptocurrencySum() - +lastPriceСhange.price)) * 100) /
         (cryptocurrencySum() - +lastPriceСhange.price);
-      return `+${dif.toFixed(2).toString()}%`;
+      return `( +${dif.toFixed(2).toString()}%)`;
     }
     if (lastPriceСhange?.type === 'remove') {
       const dif =
         ((cryptocurrencySum() + +lastPriceСhange.price - cryptocurrencySum()) * 100) /
         (cryptocurrencySum() + +lastPriceСhange.price);
 
-      return `-${dif.toFixed(2).toString()}%`;
+      return `( -${dif.toFixed(2).toString()}%)`;
     }
   }, [cryptocurrencySum, lastPriceСhange.price, lastPriceСhange?.type]);
 
@@ -43,7 +43,7 @@ const useChangePortfolio = () => {
     return cryptocurrencies.length === 0
       ? '0$'
       : lastPriceСhange?.type === 'remove'
-      ? `${+cryptocurrencySum().toFixed(2)}` + `${prefixValue()}` + ` ${lastPriceСhange?.price}$`
+      ? `${+cryptocurrencySum().toFixed(2)}$ ` + `${prefixValue()}` + ` ${lastPriceСhange?.price}$`
       : `${+(cryptocurrencySum() - +lastPriceСhange?.price).toFixed(2)} USD ` +
         `${prefixValue()}` +
         ` ${lastPriceСhange?.price}$`;

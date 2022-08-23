@@ -9,11 +9,17 @@ const ChangePortfolio = () => {
   const { portfolioChangeUSD, percentageСhange } = useChangePortfolio();
 
   return (
-    <View>
-      <View>
-        <Text>{portfolioChangeUSD}</Text>
-        <Text>{percentageСhange}</Text>
-      </View>
+    <View
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginTop: 10,
+      }}
+    >
+      <Text>Portfolio change: </Text>
+      <Text>{portfolioChangeUSD}</Text>
+      <Text>{percentageСhange}</Text>
     </View>
   );
 };
