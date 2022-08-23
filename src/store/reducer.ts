@@ -40,13 +40,13 @@ export const reducer = (state: any, action: { type: string }) => {
       const index = state.portfolio.cryptocurrencies.findIndex((item) => {
         return item.cryptocurrency === action.payload.cryptocurrency;
       });
-
       return index === -1
         ? {
             ...state,
             portfolio: {
               ...state.portfolio,
               cryptocurrencies: [...state.portfolio.cryptocurrencies, { ...action.payload }],
+              lastPriceСhange: { price: action.payload.price, type: 'add' },
             },
           }
         : {
@@ -60,8 +60,23 @@ export const reducer = (state: any, action: { type: string }) => {
                     : item;
                 }),
               ],
+              lastPriceСhange: { price: action.payload.price, type: 'add' },
             },
           };
+    }
+    case 'DELETE_CRYPTOCURRENCY_FROM_PORTFOLIO': {
+      return {
+        ...state,
+        portfolio: {
+          ...state.portfolio,
+          cryptocurrencies: [
+            ...state.portfolio.cryptocurrencies.filter((item, i) => {
+              return item.cryptocurrency !== action.payload.cryptocurrency;
+            }),
+          ],
+          lastPriceСhange: { price: action.payload.price, type: 'remove' },
+        },
+      };
     }
     default:
       return state;
