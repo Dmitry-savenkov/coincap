@@ -2,10 +2,19 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
+// Types
+import { CryptocurrencyItemTypes } from '../types/api';
+
 // Components
 import AntDesignIcon from './icons/AntDesignIcon';
 
-const CryptocurrenciesList = ({ navigation, item }) => {
+const CryptocurrenciesList = ({
+  navigation,
+  item,
+}: {
+  navigation: any;
+  item: CryptocurrencyItemTypes;
+}) => {
   return useMemo(
     () => (
       <TouchableOpacity
@@ -25,7 +34,7 @@ const CryptocurrenciesList = ({ navigation, item }) => {
         style={[styles.container]}
       >
         <View style={[styles.contentWrapper]}>
-          <View style={{ paddingVertical: 20 }}>
+          <View style={[styles.itemNameIdWrapper]}>
             <Text style={[styles.cryptoName]}>{item.name}</Text>
             <Text style={[styles.cryptoId]}>{item.id}</Text>
           </View>
@@ -33,8 +42,8 @@ const CryptocurrenciesList = ({ navigation, item }) => {
             <View style={[styles.priceUsdWrapper]}>
               <Text>{Number(item.priceUsd).toFixed(2)}$</Text>
               <View style={[styles.changePercent24HrWrapper]}>
-                <Text style={{ color: item.changePercent24Hr > 0 ? '#3AA43E' : 'red' }}>
-                  {item.changePercent24Hr > 0 ? '+' : null}
+                <Text style={{ color: +item.changePercent24Hr > 0 ? '#3AA43E' : 'red' }}>
+                  {+item.changePercent24Hr > 0 ? '+' : null}
                   {Number(item.changePercent24Hr).toFixed(2)}%
                 </Text>
               </View>
@@ -82,6 +91,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  itemNameIdWrapper: {
+    paddingVertical: 20,
   },
   cryptoName: {
     fontSize: 14,

@@ -27,7 +27,7 @@ const Portfolio = () => {
           <ChangePortfolio />
         </View>
         <View style={[styles.payloadWrapper]}>
-          {cryptocurrencies.map((item, i) => {
+          {cryptocurrencies.map((item: { cryptocurrency: string; price: string }, i) => {
             return (
               <View
                 key={i}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const CryptocurrencyDetail = ({ title, value }) => {
+const CryptocurrencyDetail = ({ title, value }: { title: string; value: string }) => {
   return (
     <View style={[styles.container]}>
       <Text style={[styles.title]}>{title}</Text>

@@ -10,7 +10,7 @@ const useChangePortfolio = () => {
   } = useContext(AppContext);
 
   const cryptocurrencySum = useCallback((): number => {
-    return cryptocurrencies.reduce((sum, cryptocurrency) => {
+    return cryptocurrencies.reduce((sum: number, cryptocurrency) => {
       return (sum += +cryptocurrency.price);
     }, 0);
   }, [cryptocurrencies]);
@@ -20,7 +20,7 @@ const useChangePortfolio = () => {
     [lastPriceСhange?.type],
   );
 
-  const percentageСhange = useCallback((): string => {
+  const percentageСhange = useCallback((): string | undefined => {
     if (lastPriceСhange?.type === 'add') {
       if (cryptocurrencySum() === +lastPriceСhange.price) {
         return '( +100%)';

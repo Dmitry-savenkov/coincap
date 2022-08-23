@@ -7,8 +7,11 @@ import AddCryptocurrency from '../screens/AddCryptocurrency';
 import Cryptocurrencies from '../screens/Cryptocurrencies';
 import Cryptocurrency from '../screens/Cryptocurrency';
 
+// Types
+import { CryptocurrenciesStackParams } from '../types/navigation';
+
 const CryptocurrenciesStack = () => {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<CryptocurrenciesStackParams>();
 
   return (
     <Stack.Navigator

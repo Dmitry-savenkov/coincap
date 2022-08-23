@@ -9,7 +9,10 @@ import CryptocurrenciesList from '../components/CryptocurrenciesList';
 // Hooks
 import useCryptocurrenciesRequest from '../hooks/useCryptocurrenciesRequest';
 
-const Cryptocurrencies = ({ navigation }) => {
+// Types
+import { CryptocurrensiesNavigationProps } from '../types/navigation';
+
+const Cryptocurrencies = ({ navigation }: CryptocurrensiesNavigationProps) => {
   const [offset, setOffset] = useState(0);
 
   const { loading, data } = useCryptocurrenciesRequest(offset);
@@ -25,7 +28,7 @@ const Cryptocurrencies = ({ navigation }) => {
       {data.length ? (
         <FlatList
           data={data}
-          keyExtractor={(item, index) => item.id + index.toString()}
+          keyExtractor={(item: { id: string }, index: number) => item.id + index.toString()}
           onEndReached={loadMore}
           onEndReachedThreshold={0.1}
           renderItem={({ item }) => <CryptocurrenciesList item={item} navigation={navigation} />}
