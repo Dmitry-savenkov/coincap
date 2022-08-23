@@ -1,5 +1,5 @@
 // Lib
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 
 // Hooks
@@ -7,6 +7,7 @@ import useCurrentCryptocurrency from '../hooks/useCurrentCryptocurrency';
 
 // Components
 import CryptocurrencyDetail from '../components/CryptocurrencyDetail';
+import TouchableButton from '../components/TouchableButton';
 
 const Сryptocurrency = ({
   navigation,
@@ -26,6 +27,10 @@ const Сryptocurrency = ({
 }) => {
   const data = useCurrentCryptocurrency(id);
 
+  const AddCryptocurrencyButtonPress = useCallback(() => {
+    navigation.navigate('AddCryptocurrency', { name, priceUsd });
+  }, [name, navigation, priceUsd]);
+
   return (
     <SafeAreaView style={[styles.container]}>
       <ScrollView>
@@ -41,14 +46,12 @@ const Сryptocurrency = ({
           <CryptocurrencyDetail title="volume usd 24 hr" value={volumeUsd24Hr} />
           <CryptocurrencyDetail title="v wap 24 hr" value={vwap24Hr} />
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('AddCryptocurrency', { name, priceUsd });
-          }}
-          style={[styles.button]}
-        >
-          <Text style={[styles.buttonText]}>Buy</Text>
-        </TouchableOpacity>
+        <TouchableButton
+          text="Buy"
+          onPress={AddCryptocurrencyButtonPress}
+          stylesText={styles.buttonText}
+          stylesWrapper={styles.button}
+        />
       </ScrollView>
     </SafeAreaView>
   );

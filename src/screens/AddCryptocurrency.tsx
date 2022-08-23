@@ -2,6 +2,9 @@
 import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 
+// Components
+import TouchableButton from '../components/TouchableButton';
+
 import { AppContext } from '../store';
 
 const AddCryptocurrency = ({
@@ -11,6 +14,13 @@ const AddCryptocurrency = ({
 }) => {
   const { dispatch } = useContext(AppContext);
   const [value, setValue] = useState('');
+
+  const addCryptocurrencyToPortfolio = () => {
+    dispatch({
+      type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO',
+      payload: { price: (Number(value) * priceUsd).toFixed(2), cryptocurrency: name },
+    });
+  };
 
   return (
     <SafeAreaView style={[styles.container]}>
@@ -26,17 +36,12 @@ const AddCryptocurrency = ({
           autoFocus
           keyboardType="decimal-pad"
         />
-        <TouchableOpacity
-          onPress={() => {
-            dispatch({
-              type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO',
-              payload: { price: (Number(value) * priceUsd).toFixed(2), cryptocurrency: name },
-            });
-          }}
-          style={[styles.button]}
-        >
-          <Text style={[styles.buttonText]}>Buy</Text>
-        </TouchableOpacity>
+        <TouchableButton
+          text="Buy"
+          stylesWrapper={styles.button}
+          stylesText={styles.buttonText}
+          onPress={addCryptocurrencyToPortfolio}
+        />
       </View>
       <View style={[styles.priceWrapper]}>
         <Text>total price: ${(Number(value) * priceUsd).toFixed(2)}</Text>
