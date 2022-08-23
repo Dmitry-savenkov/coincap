@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Components
 import AntDesignIcon from '../components/icons/AntDesignIcon';
+import ChangePortfolio from '../components/ChangePortfolio';
 
 import { AppContext } from '../store';
 
@@ -17,10 +18,13 @@ const Portfolio = () => {
   } = useContext(AppContext);
 
   return (
-    <ScrollView style={[styles.container]}>
+    <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
       <SafeAreaView>
         <View style={[styles.titleWrapper]}>
           <Text style={[styles.title]}>Portfolio</Text>
+        </View>
+        <View>
+          <ChangePortfolio />
         </View>
         <View style={[styles.payloadWrapper]}>
           {cryptocurrencies.map((item, i) => {
@@ -38,14 +42,23 @@ const Portfolio = () => {
                   alignItems: 'center',
                 }}
               >
-                <Text>{item.cryptocurrency}</Text>
-                <View>
-                  <Text>{item.price}</Text>
+                <Text
+                  numberOfLines={1}
+                  style={{ maxWidth: '50%', fontWeight: '600', fontSize: 16 }}
+                >
+                  {item.cryptocurrency}
+                </Text>
+                <View
+                  style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}
+                >
+                  <Text numberOfLines={1} style={{ marginRight: 10 }}>
+                    ${item.price}
+                  </Text>
                   <TouchableOpacity
                     onPress={() => {
                       dispatch({
                         type: 'DELETE_CRYPTOCURRENCY_FROM_PORTFOLIO',
-                        payload: { cryptocurrency: item.cryptocurrency },
+                        payload: { cryptocurrency: item.cryptocurrency, price: item.price },
                       });
                     }}
                   >
@@ -76,7 +89,6 @@ const styles = StyleSheet.create({
   },
   payloadWrapper: {
     paddingHorizontal: 15,
-    marginTop: 20,
   },
 });
 

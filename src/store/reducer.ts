@@ -46,6 +46,7 @@ export const reducer = (state: any, action: { type: string }) => {
             portfolio: {
               ...state.portfolio,
               cryptocurrencies: [...state.portfolio.cryptocurrencies, { ...action.payload }],
+              lastPriceСhange: { price: action.payload.price, type: 'add' },
             },
           }
         : {
@@ -59,6 +60,7 @@ export const reducer = (state: any, action: { type: string }) => {
                     : item;
                 }),
               ],
+              lastPriceСhange: { price: action.payload.price, type: 'add' },
             },
           };
     }
@@ -72,6 +74,7 @@ export const reducer = (state: any, action: { type: string }) => {
               return item.cryptocurrency !== action.payload.cryptocurrency;
             }),
           ],
+          lastPriceСhange: { price: action.payload.price, type: 'remove' },
         },
       };
     }

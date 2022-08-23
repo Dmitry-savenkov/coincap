@@ -13,6 +13,10 @@ const initialState = {
   },
   portfolio: {
     cryptocurrencies: [],
+    lastPriceСhange: {
+      price: null,
+      type: null,
+    },
   },
 };
 
