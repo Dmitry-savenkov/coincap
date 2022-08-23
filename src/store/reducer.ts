@@ -1,4 +1,6 @@
-export const reducer = (state: any, action: { type: string }) => {
+import { ActionTypes, StateTypes } from '../types/store';
+
+export const reducer = (state: StateTypes, action: ActionTypes) => {
   switch (action.type) {
     case 'SET_CRYPTOCURRENCIES_DATA': {
       return {
@@ -37,9 +39,11 @@ export const reducer = (state: any, action: { type: string }) => {
       };
     }
     case 'SET_CRYPTOCURRENCY_IN_PORTFOLIO': {
-      const index = state.portfolio.cryptocurrencies.findIndex((item) => {
-        return item.cryptocurrency === action.payload.cryptocurrency;
-      });
+      const index = state.portfolio.cryptocurrencies.findIndex(
+        (item: { cryptocurrency: string }) => {
+          return item.cryptocurrency === action.payload.cryptocurrency;
+        },
+      );
       return index === -1
         ? {
             ...state,
@@ -54,7 +58,7 @@ export const reducer = (state: any, action: { type: string }) => {
             portfolio: {
               ...state.portfolio,
               cryptocurrencies: [
-                ...state.portfolio.cryptocurrencies.map((item, i) => {
+                ...state.portfolio.cryptocurrencies.map((item: { price: string }, i: number) => {
                   return i === index
                     ? { ...item, price: Number(item.price) + Number(action.payload.price) }
                     : item;
@@ -70,7 +74,7 @@ export const reducer = (state: any, action: { type: string }) => {
         portfolio: {
           ...state.portfolio,
           cryptocurrencies: [
-            ...state.portfolio.cryptocurrencies.filter((item, i) => {
+            ...state.portfolio.cryptocurrencies.filter((item: { cryptocurrency: string }) => {
               return item.cryptocurrency !== action.payload.cryptocurrency;
             }),
           ],

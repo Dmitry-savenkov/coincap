@@ -1,6 +1,6 @@
 // Lib
-import React, { useCallback, useMemo } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useCallback } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
 
 // Hooks
 import useCurrentCryptocurrency from '../hooks/useCurrentCryptocurrency';
@@ -8,6 +8,9 @@ import useCurrentCryptocurrency from '../hooks/useCurrentCryptocurrency';
 // Components
 import CryptocurrencyDetail from '../components/CryptocurrencyDetail';
 import TouchableButton from '../components/TouchableButton';
+
+// Types
+import { CryptocurrencyNavigationProps } from '../types/navigation';
 
 const Сryptocurrency = ({
   navigation,
@@ -24,12 +27,13 @@ const Сryptocurrency = ({
       vwap24Hr,
     },
   },
-}) => {
+}: CryptocurrencyNavigationProps) => {
   const data = useCurrentCryptocurrency(id);
 
-  const AddCryptocurrencyButtonPress = useCallback(() => {
-    navigation.navigate('AddCryptocurrency', { name, priceUsd });
-  }, [name, navigation, priceUsd]);
+  const AddCryptocurrencyButtonPress = useCallback(
+    () => navigation.navigate('AddCryptocurrency', { name, priceUsd }),
+    [name, navigation, priceUsd],
+  );
 
   return (
     <SafeAreaView style={[styles.container]}>
@@ -41,7 +45,7 @@ const Сryptocurrency = ({
           <CryptocurrencyDetail title="change percent 24 hr" value={changePercent24Hr} />
           <CryptocurrencyDetail title="price usd" value={priceUsd} />
           <CryptocurrencyDetail title="market capitalization usd" value={marketCapUsd} />
-          <CryptocurrencyDetail title="max supply" value={maxSupply} />
+          {maxSupply && <CryptocurrencyDetail title="max supply" value={maxSupply} />}
           <CryptocurrencyDetail title="supply" value={supply} />
           <CryptocurrencyDetail title="volume usd 24 hr" value={volumeUsd24Hr} />
           <CryptocurrencyDetail title="v wap 24 hr" value={vwap24Hr} />

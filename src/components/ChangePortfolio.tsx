@@ -9,14 +9,7 @@ const ChangePortfolio = () => {
   const { portfolioChangeUSD, percentageСhange } = useChangePortfolio();
 
   return (
-    <View
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        marginTop: 10,
-      }}
-    >
+    <View style={[styles.container]}>
       <Text>Portfolio change: </Text>
       <Text>{portfolioChangeUSD}</Text>
       <Text>{percentageСhange}</Text>
@@ -24,6 +17,13 @@ const ChangePortfolio = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+});
 
 export default ChangePortfolio;

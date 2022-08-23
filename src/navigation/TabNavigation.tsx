@@ -9,8 +9,11 @@ import CryptocurrenciesStack from './CryptocurrenciesStack';
 // Components
 import AntDesignIcon from '../components/icons/AntDesignIcon';
 
+// Types
+import { TabNavigationParamList } from '../types/navigation';
+
 const TabNavigation = () => {
-  const Tab = createBottomTabNavigator();
+  const Tab = createBottomTabNavigator<TabNavigationParamList>();
 
   return (
     <Tab.Navigator

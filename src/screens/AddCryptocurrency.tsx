@@ -1,24 +1,27 @@
 // Lib
 import React, { useState, useContext } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
 
 // Components
 import TouchableButton from '../components/TouchableButton';
 
 import { AppContext } from '../store';
 
+// Types
+import { AddCryptocurrencyNavigationProps } from '../types/navigation';
+
 const AddCryptocurrency = ({
   route: {
     params: { name, priceUsd },
   },
-}) => {
+}: AddCryptocurrencyNavigationProps) => {
   const { dispatch } = useContext(AppContext);
   const [value, setValue] = useState('');
 
   const addCryptocurrencyToPortfolio = () => {
     dispatch({
       type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO',
-      payload: { price: (Number(value) * priceUsd).toFixed(2), cryptocurrency: name },
+      payload: { price: (Number(value) * +priceUsd).toFixed(2), cryptocurrency: name },
     });
   };
 
@@ -44,7 +47,7 @@ const AddCryptocurrency = ({
         />
       </View>
       <View style={[styles.priceWrapper]}>
-        <Text>total price: ${(Number(value) * priceUsd).toFixed(2)}</Text>
+        <Text>total price: ${(Number(value) * +priceUsd).toFixed(2)}</Text>
       </View>
     </SafeAreaView>
   );
