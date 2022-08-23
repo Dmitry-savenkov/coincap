@@ -9,33 +9,46 @@ const useChangePortfolio = () => {
     },
   } = useContext(AppContext);
 
-  const cruptocurrencySum = useCallback((): number => {
+  const cryptocurrencySum = useCallback((): number => {
     return cryptocurrencies.reduce((sum, cryptocurrency) => {
       return (sum += +cryptocurrency.price);
     }, 0);
   }, [cryptocurrencies]);
-
-  // const percentageСhange = useCallback((): string => {
-  //   const difference = cruptocurrencySum() - lastPriceСhange?.price;
-  //   const differencePercentage = (difference * 100) / lastPriceСhange?.price;
-  //   return differencePercentage.toString() + '%';
-  // }, [cruptocurrencySum, lastPriceСhange]);
 
   const prefixValue = useCallback(
     () => (lastPriceСhange?.type === 'add' ? '+' : '-'),
     [lastPriceСhange?.type],
   );
 
-  const cruptocurrencyPortfolioChange = useCallback((): string => {
+  const percentageСhange = useCallback((): string => {
+    if (lastPriceСhange?.type === 'add') {
+      if (cryptocurrencySum() === +lastPriceСhange.price) {
+        return '+100%';
+      }
+      const dif =
+        ((cryptocurrencySum() - (cryptocurrencySum() - +lastPriceСhange.price)) * 100) /
+        (cryptocurrencySum() - +lastPriceСhange.price);
+      return `+${dif.toFixed(2).toString()}%`;
+    }
+    if (lastPriceСhange?.type === 'remove') {
+      const dif =
+        ((cryptocurrencySum() + +lastPriceСhange.price - cryptocurrencySum()) * 100) /
+        (cryptocurrencySum() + +lastPriceСhange.price);
+
+      return `-${dif.toFixed(2).toString()}%`;
+    }
+  }, [cryptocurrencySum, lastPriceСhange.price, lastPriceСhange?.type]);
+
+  const cryptocurrencyPortfolioChange = useCallback((): string => {
     return cryptocurrencies.length === 0
       ? '0$'
       : lastPriceСhange?.type === 'remove'
-      ? `${+cruptocurrencySum().toFixed(2)}` + `${prefixValue()}` + ` ${lastPriceСhange?.price}`
-      : `${+(cruptocurrencySum() - lastPriceСhange?.price).toFixed(2)} USD ` +
+      ? `${+cryptocurrencySum().toFixed(2)}` + `${prefixValue()}` + ` ${lastPriceСhange?.price}$`
+      : `${+(cryptocurrencySum() - +lastPriceСhange?.price).toFixed(2)} USD ` +
         `${prefixValue()}` +
-        ` ${lastPriceСhange?.price}`;
+        ` ${lastPriceСhange?.price}$`;
   }, [
-    cruptocurrencySum,
+    cryptocurrencySum,
     cryptocurrencies.length,
     lastPriceСhange?.price,
     lastPriceСhange?.type,
@@ -43,7 +56,9 @@ const useChangePortfolio = () => {
   ]);
 
   return {
-    portfolioChange: cruptocurrencyPortfolioChange(),
+    cryptocurrencies,
+    portfolioChangeUSD: cryptocurrencyPortfolioChange(),
+    percentageСhange: percentageСhange(),
   };
 };
 

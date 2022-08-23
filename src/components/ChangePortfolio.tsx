@@ -6,12 +6,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import useChangePortfolio from '../hooks/useChangePortfolio';
 
 const ChangePortfolio = () => {
-  const { portfolioChange } = useChangePortfolio();
+  const { portfolioChangeUSD, percentageСhange } = useChangePortfolio();
 
   return (
     <View>
-      <Text>{portfolioChange}</Text>
-      {/* <Text>{percentageСhange()}</Text> */}
+      <View>
+        <Text>{portfolioChangeUSD}</Text>
+        <Text>{percentageСhange}</Text>
+      </View>
     </View>
   );
 };
