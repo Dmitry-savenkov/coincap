@@ -1,8 +1,15 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+
+import RootNavigationContainer from './src/navigation/NavigationContainer';
+
+import ContextProvider from './src/store';
 
 const App = () => {
-  return <SafeAreaView></SafeAreaView>;
+  return (
+    <ContextProvider>
+      <RootNavigationContainer />
+    </ContextProvider>
+  );
 };
 
 export default App;
