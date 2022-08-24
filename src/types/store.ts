@@ -4,8 +4,10 @@ type ActionTypes =
   | { type: 'SET_CRYPTOCURRENCIES_DATA'; payload: SetCryptocurrencies }
   | { type: 'SET_CRYPTOCURRENCIES_LOADING' }
   | { type: 'SET_CRYPTOCURRENCIES_LOADED' }
+  | { type: 'SET_CURRENT_CRYPTOCURRENCY_LOADING' }
+  | { type: 'SET_CURRENT_CRYPTOCURRENCY_LOADED' }
   | { type: 'SET_CURRENT_CRYPTOCURRENCY_DATA'; payload: SetCryptocurrencies }
-  | { type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO'; payload: PortfolioCryptocurrenciesItemTypes | any[] }
+  | { type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO'; payload: PortfolioCryptocurrenciesItemTypes | any }
   | { type: 'DELETE_CRYPTOCURRENCY_FROM_PORTFOLIO'; payload: PortfolioCryptocurrenciesItemTypes };
 
 type PortfolioCryptocurrenciesItemTypes = {

@@ -1,5 +1,4 @@
 type CryptocurrencyItemTypes = {
-  item: any;
   id: string;
   name: string;
   priceUsd: string;
