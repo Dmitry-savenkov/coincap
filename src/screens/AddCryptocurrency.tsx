@@ -29,7 +29,12 @@ const AddCryptocurrency = ({
   };
 
   const regExTextInputFormatter = (value: string) => {
-    const regExValue = value.replace(/[^0-9\.]/g, '');
+    // only numbers with one dot
+    const regExValue = value
+      .replace(/[^.\d]/g, '')
+      .replace(/^(\d*\.?)|(\d*)\.?/g, '$1$2')
+      .replace(/^(\.+)/g, '');
+
     setTextInputValue(regExValue);
   };
 
