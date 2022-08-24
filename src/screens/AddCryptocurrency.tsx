@@ -16,13 +16,18 @@ const AddCryptocurrency = ({
   },
 }: AddCryptocurrencyNavigationProps) => {
   const { dispatch } = useContext(AppContext);
-  const [value, setValue] = useState('');
+  const [textInputValue, setTextInputValue] = useState('');
 
   const addCryptocurrencyToPortfolio = () => {
     dispatch({
       type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO',
-      payload: { price: (Number(value) * +priceUsd).toFixed(2), cryptocurrency: name },
+      payload: { price: (Number(textInputValue) * +priceUsd).toFixed(2), cryptocurrency: name },
     });
+  };
+
+  const regExTextInputFormatter = (value: string) => {
+    const regExValue = value.replace(/[^0-9\.]/g, '');
+    setTextInputValue(regExValue);
   };
 
   return (
@@ -34,12 +39,15 @@ const AddCryptocurrency = ({
         <TextInput
           style={[styles.textInput]}
           placeholder={'0'}
-          value={value}
-          onChangeText={(value) => setValue(value)}
+          value={textInputValue}
+          onChangeText={(value) => {
+            regExTextInputFormatter(value);
+          }}
           autoFocus
           keyboardType="decimal-pad"
         />
         <TouchableButton
+          disabled={!textInputValue}
           text="Buy"
           stylesWrapper={styles.button}
           stylesText={styles.buttonText}
@@ -47,7 +55,7 @@ const AddCryptocurrency = ({
         />
       </View>
       <View style={[styles.priceWrapper]}>
-        <Text>total price: ${(Number(value) * +priceUsd).toFixed(2)}</Text>
+        <Text>total price: ${(Number(textInputValue) * +priceUsd).toFixed(2)}</Text>
       </View>
     </SafeAreaView>
   );
