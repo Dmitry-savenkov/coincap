@@ -2,12 +2,10 @@
 import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
 
-// Hooks
-import useCurrentCryptocurrency from '../hooks/useCurrentCryptocurrency';
-
 // Components
 import CryptocurrencyDetail from '../components/CryptocurrencyDetail';
 import TouchableButton from '../components/TouchableButton';
+import Title from '../components/Title';
 
 // Types
 import { CryptocurrencyNavigationProps } from '../types/navigation';
@@ -38,9 +36,7 @@ const Сryptocurrency = ({
     () => (
       <SafeAreaView style={[styles.container]}>
         <ScrollView>
-          <View style={[styles.titleWrapper]}>
-            <Text style={[styles.title]}>{name}</Text>
-          </View>
+          <Title title={name} />
           <CryptocurrencyChart id={id} />
           <View style={[styles.cryptocurrencyDetailWrapper]}>
             <CryptocurrencyDetail title="change percent 24 hr" value={changePercent24Hr} />
@@ -56,6 +52,7 @@ const Сryptocurrency = ({
             onPress={AddCryptocurrencyButtonPress}
             stylesText={styles.buttonText}
             stylesWrapper={styles.button}
+            disabled={false}
           />
         </ScrollView>
       </SafeAreaView>
