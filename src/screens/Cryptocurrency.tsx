@@ -1,9 +1,10 @@
 // Lib
 import React, { useCallback, useMemo } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, View, SafeAreaView, ScrollView } from 'react-native';
 
 // Components
 import CryptocurrencyDetail from '../components/CryptocurrencyDetail';
+import CryptocurrencyChart from '../components/CryptocurrencyChart';
 import TouchableButton from '../components/TouchableButton';
 import Title from '../components/Title';
 
@@ -12,7 +13,6 @@ import { colors } from '../constants';
 
 // Types
 import { CryptocurrencyNavigationProps } from '../types/navigation';
-import CryptocurrencyChart from '../components/CryptocurrencyChart';
 
 const Сryptocurrency = ({
   navigation,

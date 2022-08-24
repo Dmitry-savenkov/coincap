@@ -1,9 +1,9 @@
 // Lib
 import React, { useContext } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 // Components
-import AntDesignIcon from '../components/icons/AntDesignIcon';
+import PortfolioListItem from './PortfolioListItem';
 
 // UI
 import { colors } from '../constants';
@@ -15,38 +15,17 @@ const PortfolioList = () => {
     state: {
       portfolio: { cryptocurrencies },
     },
-    dispatch,
   } = useContext(AppContext);
 
   return (
     <View style={[styles.payloadWrapper]}>
-      {cryptocurrencies.map((item: { cryptocurrency: string; price: string }, i) => {
-        return (
-          <View key={i} style={[styles.portfolioItemContainer]}>
-            <Text numberOfLines={1} style={[styles.nameCryptocurrency]}>
-              {item.cryptocurrency}
-            </Text>
-            <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-              <Text numberOfLines={1} style={{ marginRight: 10 }}>
-                ${+item.price}
-              </Text>
-              <TouchableOpacity
-                onPress={() => {
-                  dispatch({
-                    type: 'DELETE_CRYPTOCURRENCY_FROM_PORTFOLIO',
-                    payload: {
-                      cryptocurrency: item.cryptocurrency,
-                      price: item.price,
-                    },
-                  });
-                }}
-              >
-                <AntDesignIcon name="delete" color={colors.black} size={20} />
-              </TouchableOpacity>
-            </View>
-          </View>
-        );
-      })}
+      {cryptocurrencies.map((item) => (
+        <PortfolioListItem
+          key={item.cryptocurrency}
+          cryptocurrency={item.cryptocurrency}
+          price={item.price}
+        />
+      ))}
     </View>
   );
 };
