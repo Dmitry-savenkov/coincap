@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   navigateButton: {
     paddingHorizontal: 30,
     backgroundColor: colors.green,
-    height: '100%',
+    height: 75,
     alignItems: 'center',
     justifyContent: 'center',
     borderTopRightRadius: 10,
