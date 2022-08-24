@@ -8,6 +8,9 @@ import { CryptocurrencyItemTypes } from '../types/api';
 // Components
 import AntDesignIcon from './icons/AntDesignIcon';
 
+// UI
+import { width, colors } from '../constants';
+
 const CryptocurrenciesList = ({
   navigation,
   item,
@@ -35,14 +38,16 @@ const CryptocurrenciesList = ({
       >
         <View style={[styles.contentWrapper]}>
           <View style={[styles.itemNameIdWrapper]}>
-            <Text style={[styles.cryptoName]}>{item.name}</Text>
+            <Text numberOfLines={1} style={[styles.cryptoName]}>
+              {item.name}
+            </Text>
             <Text style={[styles.cryptoId]}>{item.id}</Text>
           </View>
           <View style={[styles.cryptoPriceWrapper]}>
             <View style={[styles.priceUsdWrapper]}>
               <Text>{Number(item.priceUsd).toFixed(2)}$</Text>
               <View style={[styles.changePercent24HrWrapper]}>
-                <Text style={{ color: +item.changePercent24Hr > 0 ? '#3AA43E' : 'red' }}>
+                <Text style={{ color: +item.changePercent24Hr > 0 ? colors.green : colors.red }}>
                   {+item.changePercent24Hr > 0 ? '+' : null}
                   {Number(item.changePercent24Hr).toFixed(2)}%
                 </Text>
@@ -57,7 +62,7 @@ const CryptocurrenciesList = ({
               }
               style={[styles.navigateButton]}
             >
-              <AntDesignIcon name="plus" size={16} color="white" />
+              <AntDesignIcon name="plus" size={16} color={colors.white} />
             </TouchableOpacity>
           </View>
         </View>
@@ -81,7 +86,7 @@ const CryptocurrenciesList = ({
 const styles = StyleSheet.create({
   container: {
     height: 75,
-    backgroundColor: '#CECECE',
+    backgroundColor: colors.grey,
     marginTop: 20,
     borderRadius: 10,
     marginHorizontal: 10,
@@ -98,6 +103,7 @@ const styles = StyleSheet.create({
   cryptoName: {
     fontSize: 14,
     fontWeight: '500',
+    width: width * 0.4,
   },
   cryptoId: {
     fontSize: 10,
@@ -119,7 +125,7 @@ const styles = StyleSheet.create({
   },
   navigateButton: {
     paddingHorizontal: 30,
-    backgroundColor: '#3AA43E',
+    backgroundColor: colors.green,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',

@@ -4,6 +4,10 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 // Components
 import AntDesignIcon from '../components/icons/AntDesignIcon';
+
+// UI
+import { colors } from '../constants';
+
 import { AppContext } from '../store';
 
 const PortfolioList = () => {
@@ -37,7 +41,7 @@ const PortfolioList = () => {
                   });
                 }}
               >
-                <AntDesignIcon name="delete" color="black" size={20} />
+                <AntDesignIcon name="delete" color={colors.black} size={20} />
               </TouchableOpacity>
             </View>
           </View>
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
   portfolioItemContainer: {
     paddingHorizontal: 10,
     height: 60,
-    backgroundColor: '#CECECE',
+    backgroundColor: colors.grey,
     marginTop: 30,
     borderRadius: 10,
     justifyContent: 'space-between',

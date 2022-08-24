@@ -7,6 +7,9 @@ import CryptocurrencyDetail from '../components/CryptocurrencyDetail';
 import TouchableButton from '../components/TouchableButton';
 import Title from '../components/Title';
 
+// UI
+import { colors } from '../constants';
+
 // Types
 import { CryptocurrencyNavigationProps } from '../types/navigation';
 import CryptocurrencyChart from '../components/CryptocurrencyChart';
@@ -39,13 +42,31 @@ const Сryptocurrency = ({
           <Title title={name} />
           <CryptocurrencyChart id={id} />
           <View style={[styles.cryptocurrencyDetailWrapper]}>
-            <CryptocurrencyDetail title="change percent 24 hr" value={changePercent24Hr} />
-            <CryptocurrencyDetail title="price usd" value={priceUsd} />
-            <CryptocurrencyDetail title="market capitalization usd" value={marketCapUsd} />
-            {maxSupply && <CryptocurrencyDetail title="max supply" value={maxSupply} />}
-            <CryptocurrencyDetail title="supply" value={supply} />
-            <CryptocurrencyDetail title="volume usd 24 hr" value={volumeUsd24Hr} />
-            <CryptocurrencyDetail title="v wap 24 hr" value={vwap24Hr} />
+            <CryptocurrencyDetail
+              title="value change in the last 24 hours"
+              value={changePercent24Hr}
+              percent={true}
+            />
+            <CryptocurrencyDetail title="volume-weighted price" value={priceUsd} percent={false} />
+            <CryptocurrencyDetail title="supply x price" value={marketCapUsd} percent={false} />
+            {maxSupply && (
+              <CryptocurrencyDetail
+                title="total quantity of asset"
+                value={maxSupply}
+                percent={false}
+              />
+            )}
+            <CryptocurrencyDetail title="supply for trading" value={supply} percent={false} />
+            <CryptocurrencyDetail
+              title="quantity of trading volume"
+              value={volumeUsd24Hr}
+              percent={false}
+            />
+            <CryptocurrencyDetail
+              title="Volume Weighted Average Price"
+              value={vwap24Hr}
+              percent={false}
+            />
           </View>
           <TouchableButton
             text="Buy"
@@ -90,7 +111,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 45,
-    backgroundColor: '#3AA43E',
+    backgroundColor: colors.green,
     marginTop: 20,
     borderRadius: 10,
     marginHorizontal: 10,
@@ -98,7 +119,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: 'white',
+    color: colors.white,
     fontSize: 16,
     fontWeight: '600',
   },
