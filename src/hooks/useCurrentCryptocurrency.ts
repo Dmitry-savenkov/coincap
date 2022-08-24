@@ -11,7 +11,7 @@ const useCurrentCryptocurrency = (id: string) => {
   } = useContext(AppContext);
 
   const requestCurrentCurrency = () => {
-    fetch(`${API_URL}/${id}/history?interval=m1`)
+    fetch(`${API_URL}/${id}/history?interval=h12`)
       .then((res) => {
         return res.json();
       })
@@ -27,7 +27,12 @@ const useCurrentCryptocurrency = (id: string) => {
     requestCurrenciesCallback();
   }, [requestCurrenciesCallback]);
 
-  return data;
+  return data.map((item) => {
+    return {
+      priceUsd: +item.priceUsd,
+      time: new Date(item.date),
+    };
+  });
 };
 
 export default useCurrentCryptocurrency;
