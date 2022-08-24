@@ -5,10 +5,13 @@ import { StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
 // Components
 import TouchableButton from '../components/TouchableButton';
 
-import { AppContext } from '../store';
+// UI
+import { colors } from '../constants';
 
 // Types
 import { AddCryptocurrencyNavigationProps } from '../types/navigation';
+
+import { AppContext } from '../store';
 
 const AddCryptocurrency = ({
   route: {
@@ -16,13 +19,23 @@ const AddCryptocurrency = ({
   },
 }: AddCryptocurrencyNavigationProps) => {
   const { dispatch } = useContext(AppContext);
-  const [value, setValue] = useState('');
+  const [textInputValue, setTextInputValue] = useState('');
 
   const addCryptocurrencyToPortfolio = () => {
     dispatch({
       type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO',
-      payload: { price: (Number(value) * +priceUsd).toFixed(2), cryptocurrency: name },
+      payload: { price: (Number(textInputValue) * +priceUsd).toFixed(2), cryptocurrency: name },
     });
+  };
+
+  const regExTextInputFormatter = (value: string) => {
+    // only numbers with one dot
+    const regExValue = value
+      .replace(/[^.\d]/g, '')
+      .replace(/^(\d*\.?)|(\d*)\.?/g, '$1$2')
+      .replace(/^(\.+)/g, '');
+
+    setTextInputValue(regExValue);
   };
 
   return (
@@ -34,12 +47,15 @@ const AddCryptocurrency = ({
         <TextInput
           style={[styles.textInput]}
           placeholder={'0'}
-          value={value}
-          onChangeText={(value) => setValue(value)}
+          value={textInputValue}
+          onChangeText={(value) => {
+            regExTextInputFormatter(value);
+          }}
           autoFocus
           keyboardType="decimal-pad"
         />
         <TouchableButton
+          disabled={!textInputValue}
           text="Buy"
           stylesWrapper={styles.button}
           stylesText={styles.buttonText}
@@ -47,7 +63,7 @@ const AddCryptocurrency = ({
         />
       </View>
       <View style={[styles.priceWrapper]}>
-        <Text>total price: ${(Number(value) * +priceUsd).toFixed(2)}</Text>
+        <Text>total price: ${(Number(textInputValue) * +priceUsd).toFixed(2)}</Text>
       </View>
     </SafeAreaView>
   );
@@ -76,12 +92,12 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 5,
     paddingHorizontal: 10,
-    backgroundColor: '#8E8E8E',
+    backgroundColor: colors.grey,
   },
   button: {
     width: 50,
     height: 40,
-    backgroundColor: '#3AA43E',
+    backgroundColor: colors.green,
     borderRadius: 10,
     marginHorizontal: 10,
     alignItems: 'center',
@@ -89,7 +105,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: 'white',
+    color: colors.white,
     fontSize: 14,
     fontWeight: '600',
   },

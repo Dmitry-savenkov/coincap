@@ -6,6 +6,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Portfolio from '../screens/Portfolio';
 import CryptocurrenciesStack from './CryptocurrenciesStack';
 
+// UI
+import { colors } from '../constants';
+
 // Components
 import AntDesignIcon from '../components/icons/AntDesignIcon';
 
@@ -19,9 +22,9 @@ const TabNavigation = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: '#FFFFFF' },
-        tabBarInactiveTintColor: '#AAAAAA',
-        tabBarActiveTintColor: '#000000',
+        tabBarStyle: { backgroundColor: colors.white },
+        tabBarInactiveTintColor: colors.greyDeep,
+        tabBarActiveTintColor: colors.black,
       }}
       initialRouteName="Cryptocurrencies"
     >

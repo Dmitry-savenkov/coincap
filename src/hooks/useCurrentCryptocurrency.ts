@@ -6,11 +6,12 @@ const useCurrentCryptocurrency = (id: string) => {
   const {
     dispatch,
     state: {
-      currentCryptocurrency: { data },
+      currentCryptocurrency: { data, loading },
     },
   } = useContext(AppContext);
 
   const requestCurrentCurrency = () => {
+    dispatch({ type: 'SET_CURRENT_CRYPTOCURRENCY_LOADING' });
     fetch(`${API_URL}/${id}/history?interval=h12`)
       .then((res) => {
         return res.json();
@@ -18,6 +19,9 @@ const useCurrentCryptocurrency = (id: string) => {
       .then((dataJSON) => dispatch({ type: 'SET_CURRENT_CRYPTOCURRENCY_DATA', payload: dataJSON }))
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        dispatch({ type: 'SET_CURRENT_CRYPTOCURRENCY_LOADED' });
       });
   };
 
@@ -27,12 +31,15 @@ const useCurrentCryptocurrency = (id: string) => {
     requestCurrenciesCallback();
   }, [requestCurrenciesCallback]);
 
-  return data.map((item) => {
-    return {
-      priceUsd: +item.priceUsd,
-      time: new Date(item.date),
-    };
-  });
+  const convertDataForChart = (data: any[]) =>
+    data?.map((item) => {
+      return {
+        priceUsd: +item.priceUsd,
+        time: new Date(item.date),
+      };
+    });
+
+  return { loading, data: convertDataForChart(data) };
 };
 
 export default useCurrentCryptocurrency;

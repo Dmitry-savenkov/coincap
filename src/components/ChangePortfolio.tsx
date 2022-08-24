@@ -10,7 +10,6 @@ const ChangePortfolio = () => {
 
   return (
     <View style={[styles.container]}>
-      <Text>Portfolio change: </Text>
       <Text>{portfolioChangeUSD}</Text>
       <Text>{percentageСhange}</Text>
     </View>
@@ -22,6 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 10,
   },
 });

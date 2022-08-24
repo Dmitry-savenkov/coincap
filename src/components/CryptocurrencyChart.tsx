@@ -12,11 +12,11 @@ import Loader from './Loader';
 LogBox.ignoreLogs(['Require cycle: node_modules/victory']);
 
 const CryptocurrencyChart = ({ id }: { id: string }) => {
-  const data = useCurrentCryptocurrency(id);
+  const { loading, data } = useCurrentCryptocurrency(id);
 
   return (
     <View style={styles.container}>
-      {data.length !== 0 ? (
+      {!loading ? (
         <VictoryChart width={350} theme={VictoryTheme.material}>
           <VictoryBar data={data} x="time" y="priceUsd" />
         </VictoryChart>

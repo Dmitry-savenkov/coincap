@@ -38,6 +38,24 @@ export const reducer = (state: StateTypes, action: ActionTypes) => {
         },
       };
     }
+    case 'SET_CURRENT_CRYPTOCURRENCY_LOADING': {
+      return {
+        ...state,
+        currentCryptocurrency: {
+          ...state.currentCryptocurrency,
+          loading: true,
+        },
+      };
+    }
+    case 'SET_CURRENT_CRYPTOCURRENCY_LOADED': {
+      return {
+        ...state,
+        currentCryptocurrency: {
+          ...state.currentCryptocurrency,
+          loading: false,
+        },
+      };
+    }
     case 'SET_CRYPTOCURRENCY_IN_PORTFOLIO': {
       const index = state.portfolio.cryptocurrencies.findIndex(
         (item: { cryptocurrency: string }) => {
