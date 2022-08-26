@@ -23,7 +23,7 @@ const AddCryptocurrency = ({
 
   const addCryptocurrencyToPortfolio = () => {
     dispatch({
-      type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO',
+      type: 'ADD_CRYPTOCURRENCY_IN_PORTFOLIO',
       payload: { price: (Number(textInputValue) * +priceUsd).toFixed(2), cryptocurrency: name },
     });
   };
