@@ -2,7 +2,7 @@ import { useEffect, useContext, useCallback } from 'react';
 import { API_URL } from '../api';
 import { AppContext } from '../store';
 
-const useCryptocurrenciesRequest = (offset: number) => {
+const useCryptocurrencies = (offset: number) => {
   const {
     dispatch,
     state: {
@@ -34,4 +34,4 @@ const useCryptocurrenciesRequest = (offset: number) => {
   return { loading, data };
 };
 
-export default useCryptocurrenciesRequest;
+export default useCryptocurrencies;

@@ -3,9 +3,9 @@ import React, { useContext } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 // Components
-import AntDesignIcon from '../components/icons/AntDesignIcon';
-import { colors } from '../constants';
-import { AppContext } from '../store';
+import AntDesignIcon from '../Icons/AntDesignIcon';
+import { colors } from '../../constants';
+import { AppContext } from '../../store';
 
 const PortfolioListItem = ({
   cryptocurrency,

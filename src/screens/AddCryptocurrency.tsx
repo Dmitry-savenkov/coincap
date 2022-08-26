@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
 
 // Components
-import TouchableButton from '../components/TouchableButton';
+import TouchableButton from '../components/Button/TouchableButton';
 
 // UI
 import { colors } from '../constants';
