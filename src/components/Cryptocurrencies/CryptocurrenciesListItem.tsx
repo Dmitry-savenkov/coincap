@@ -3,15 +3,15 @@ import React, { useMemo } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 // Types
-import { CryptocurrencyItemTypes } from '../types/api';
+import { CryptocurrencyItemTypes } from '../../types/api';
 
 // Components
-import AntDesignIcon from './icons/AntDesignIcon';
+import AntDesignIcon from '../Icons/AntDesignIcon';
 
 // UI
-import { width, colors } from '../constants';
+import { width, colors } from '../../constants';
 
-const CryptocurrenciesList = ({
+const CryptocurrenciesListItem = ({
   navigation,
   item,
 }: {
@@ -134,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CryptocurrenciesList;
+export default CryptocurrenciesListItem;

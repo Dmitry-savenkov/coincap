@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
 
 // Components
-import TouchableButton from '../components/TouchableButton';
+import TouchableButton from '../components/Button/TouchableButton';
 
 // UI
 import { colors } from '../constants';
@@ -23,7 +23,7 @@ const AddCryptocurrency = ({
 
   const addCryptocurrencyToPortfolio = () => {
     dispatch({
-      type: 'SET_CRYPTOCURRENCY_IN_PORTFOLIO',
+      type: 'ADD_CRYPTOCURRENCY_IN_PORTFOLIO',
       payload: { price: (Number(textInputValue) * +priceUsd).toFixed(2), cryptocurrency: name },
     });
   };

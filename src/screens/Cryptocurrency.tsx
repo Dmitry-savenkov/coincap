@@ -3,10 +3,10 @@ import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, View, SafeAreaView, ScrollView } from 'react-native';
 
 // Components
-import CryptocurrencyDetail from '../components/CryptocurrencyDetail';
-import CryptocurrencyChart from '../components/CryptocurrencyChart';
-import TouchableButton from '../components/TouchableButton';
-import Title from '../components/Title';
+import CryptocurrencyDetail from '../components/CurrentCryptocurrency/CryptocurrencyDetail';
+import CryptocurrencyChart from '../components/CurrentCryptocurrency/CryptocurrencyChart';
+import TouchableButton from '../components/Button/TouchableButton';
+import Title from '../components/Title/Title';
 
 // UI
 import { colors } from '../constants';

@@ -4,10 +4,10 @@ import { StyleSheet, View, LogBox } from 'react-native';
 import { VictoryChart, VictoryTheme, VictoryBar } from 'victory-native';
 
 // Hooks
-import useCurrentCryptocurrency from '../hooks/useCurrentCryptocurrency';
+import useCurrentCryptocurrency from '../../hooks/useCurrentCryptocurrency';
 
 // Components
-import Loader from './Loader';
+import Loader from '../Loader/Loader';
 
 LogBox.ignoreLogs(['Require cycle: node_modules/victory']);
 

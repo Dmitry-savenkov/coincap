@@ -10,7 +10,7 @@ import CryptocurrenciesStack from './CryptocurrenciesStack';
 import { colors } from '../constants';
 
 // Components
-import AntDesignIcon from '../components/icons/AntDesignIcon';
+import AntDesignIcon from '../components/Icons/AntDesignIcon';
 
 // Types
 import { TabNavigationParamList } from '../types/navigation';
