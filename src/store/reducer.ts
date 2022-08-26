@@ -56,7 +56,7 @@ export const reducer = (state: StateTypes, action: ActionTypes) => {
         },
       };
     }
-    case 'SET_CRYPTOCURRENCY_IN_PORTFOLIO': {
+    case 'ADD_CRYPTOCURRENCY_IN_PORTFOLIO': {
       const index = state.portfolio.cryptocurrencies.findIndex(
         (item: { cryptocurrency: string }) => {
           return item.cryptocurrency === action.payload.cryptocurrency;

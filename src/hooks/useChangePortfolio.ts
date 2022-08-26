@@ -56,7 +56,6 @@ const useChangePortfolio = () => {
   ]);
 
   return {
-    cryptocurrencies,
     portfolioChangeUSD: cryptocurrencyPortfolioChange(),
     percentageСhange: percentageСhange(),
   };

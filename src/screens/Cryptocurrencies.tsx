@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { SafeAreaView, FlatList } from 'react-native';
 
 //Components
-import Loader from '../components/Loader';
-import CryptocurrenciesList from '../components/CryptocurrenciesList';
+import Loader from '../components/Loader/Loader';
+import CryptocurrenciesList from '../components/Cryptocurrencies/CryptocurrenciesListItem';
 
 // Hooks
-import useCryptocurrenciesRequest from '../hooks/useCryptocurrenciesRequest';
+import useCryptocurrencies from '../hooks/useCryptocurrencies';
 
 // Types
 import { CryptocurrensiesNavigationProps } from '../types/navigation';
@@ -15,7 +15,7 @@ import { CryptocurrensiesNavigationProps } from '../types/navigation';
 const Cryptocurrencies = ({ navigation }: CryptocurrensiesNavigationProps) => {
   const [offset, setOffset] = useState(0);
 
-  const { loading, data } = useCryptocurrenciesRequest(offset);
+  const { loading, data } = useCryptocurrencies(offset);
 
   const loadMore = () => {
     if (!loading) {

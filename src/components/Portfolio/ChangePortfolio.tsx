@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 // Hooks
-import useChangePortfolio from '../hooks/useChangePortfolio';
+import useChangePortfolio from '../../hooks/useChangePortfolio';
 
 const ChangePortfolio = () => {
   const { portfolioChangeUSD, percentageСhange } = useChangePortfolio();

@@ -1,8 +1,8 @@
 import { useEffect, useContext, useCallback } from 'react';
-import { API_URL } from '../api';
+import { fetchCryptoCyrrencies } from '../api';
 import { AppContext } from '../store';
 
-const useCryptocurrenciesRequest = (offset: number) => {
+const useCryptocurrencies = (offset: any) => {
   const {
     dispatch,
     state: {
@@ -12,7 +12,7 @@ const useCryptocurrenciesRequest = (offset: number) => {
 
   const requestCurrencies = () => {
     dispatch({ type: 'SET_CRYPTOCURRENCIES_LOADING' });
-    fetch(`${API_URL}?offset=${offset}&limit=10`)
+    fetchCryptoCyrrencies(offset)
       .then((res) => {
         return res.json();
       })
@@ -34,4 +34,4 @@ const useCryptocurrenciesRequest = (offset: number) => {
   return { loading, data };
 };
 
-export default useCryptocurrenciesRequest;
+export default useCryptocurrencies;
