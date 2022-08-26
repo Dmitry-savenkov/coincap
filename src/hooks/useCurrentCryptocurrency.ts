@@ -1,5 +1,5 @@
 import { useEffect, useContext, useCallback } from 'react';
-import { API_URL } from '../api';
+import { API_URL, fetchCryptoCyrrencyHistory } from '../api';
 import { AppContext } from '../store';
 
 const useCurrentCryptocurrency = (id: string) => {
@@ -12,7 +12,7 @@ const useCurrentCryptocurrency = (id: string) => {
 
   const requestCurrentCurrency = () => {
     dispatch({ type: 'SET_CURRENT_CRYPTOCURRENCY_LOADING' });
-    fetch(`${API_URL}/${id}/history?interval=h12`)
+    fetchCryptoCyrrencyHistory(id)
       .then((res) => {
         return res.json();
       })
